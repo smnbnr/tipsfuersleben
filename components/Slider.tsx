@@ -16,7 +16,7 @@ const Slider = ({ text, color }: SliderProps) => {
     >
       {text.map((e, i) => (
         <SwiperSlide
-          className={`${color} text-center text-xl font-semibold rounded-md flex items-center justify-center border border-black`}
+          className={`${color} w-full mb-7 flex items-center justify-center text-center text-xl font-semibold rounded-`}
           key={i}
         >
           {e}

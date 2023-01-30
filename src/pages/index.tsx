@@ -161,7 +161,7 @@ export default function Home() {
         {/* Wrapper */}
         <div className="flex justify-center items-center min-h-screen w-screen bg-slate-300">
           {/* Flex Container für die Slides */}
-          <div className="bg-white  w-5/6 h-2/3 border-solid border-2 border-black">
+          <div className="w-11/12 border-solid border border-slate-400 flex flex-wrap gap-4 items-stretch">
             <Slider color="bg-green-200" text={text1} />
             <Slider color="bg-blue-200" text={text2} />
             <Slider color="bg-red-200" text={text3} />
