@@ -149,6 +149,7 @@ export default function Home() {
     "auf die Tränendrüse drücken",
     "die Familie aus dem Spiel lassen",
   ]);
+
   return (
     <>
       <Head>
@@ -159,7 +160,7 @@ export default function Home() {
       </Head>
       <main>
         {/* Wrapper */}
-        <div className="flex flex-col justify-center items-center min-h-screen w-screen border-green-400 border-solid">
+        <div className="flex flex-col justify-center items-center min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
           <Header></Header>
           {/* Flex Container für die Slides */}
           <div className="w-11/12 border-solid border border-slate-400 flex flex-wrap gap-4 items-stretch">

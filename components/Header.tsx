@@ -1,5 +1,10 @@
 const Header = () => {
-  return <h1 className="text-3xl mb-12 font-extrabold">Tips fürs Leben!</h1>;
+  return (
+    <div className="w-11/12 flex flex-col items-center">
+      <img src="/sofa2.svg" alt="sofa"></img>
+      <h1 className="text-3xl mb-16 font-extrabold">LEBENSLOTSE</h1>
+    </div>
+  );
 };
 
 export default Header;
