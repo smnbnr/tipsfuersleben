@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import Slider from "components/Slider";
+import Header from "components/Header";
+import RandomButton from "components/RandomButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -159,13 +159,15 @@ export default function Home() {
       </Head>
       <main>
         {/* Wrapper */}
-        <div className="flex justify-center items-center min-h-screen w-screen bg-slate-300">
+        <div className="flex flex-col justify-center items-center min-h-screen w-screen border-green-400 border-solid">
+          <Header></Header>
           {/* Flex Container für die Slides */}
           <div className="w-11/12 border-solid border border-slate-400 flex flex-wrap gap-4 items-stretch">
             <Slider color="bg-green-200" text={text1} />
             <Slider color="bg-blue-200" text={text2} />
             <Slider color="bg-red-200" text={text3} />
           </div>
+          <RandomButton />
         </div>
       </main>
     </>
