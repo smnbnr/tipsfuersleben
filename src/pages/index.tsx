@@ -163,7 +163,7 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
           <Header></Header>
           {/* Flex Container für die Slides */}
-          <div className="w-11/12 border-solid border border-slate-400 flex flex-wrap gap-4 items-stretch">
+          <div className="w-11/12 flex flex-wrap gap-4 items-stretch">
             <Slider color="bg-green-200" text={text1} />
             <Slider color="bg-blue-200" text={text2} />
             <Slider color="bg-red-200" text={text3} />
