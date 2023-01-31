@@ -2,8 +2,10 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 import { useState } from "react";
 import Slider from "components/Slider";
+import { useSwiper } from "swiper/react";
 import Header from "components/Header";
-import RandomButton from "components/RandomButton";
+import RandomButton from "components/AddButton";
+import AddButton from "components/AddButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -149,7 +151,6 @@ export default function Home() {
     "auf die Tränendrüse drücken",
     "die Familie aus dem Spiel lassen",
   ]);
-
   return (
     <>
       <Head>
@@ -161,14 +162,14 @@ export default function Home() {
       <main>
         {/* Wrapper */}
         <div className="flex flex-col justify-center items-center min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
-          <Header></Header>
+          <Header />
           {/* Flex Container für die Slides */}
           <div className="w-11/12 flex flex-wrap gap-4 items-stretch">
             <Slider color="bg-green-200" text={text1} />
             <Slider color="bg-blue-200" text={text2} />
             <Slider color="bg-red-200" text={text3} />
           </div>
-          <RandomButton />
+          <AddButton></AddButton>
         </div>
       </main>
     </>
