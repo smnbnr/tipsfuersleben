@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "components/Slider";
 import { useSwiper } from "swiper/react";
 import Header from "components/Header";
@@ -151,6 +151,7 @@ export default function Home() {
     "auf die Tränendrüse drücken",
     "die Familie aus dem Spiel lassen",
   ]);
+
   return (
     <>
       <Head>

@@ -1,7 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { EffectCreative } from "swiper";
 import "swiper/css";
-
 import "swiper/css/effect-creative";
 
 interface SliderProps {
@@ -26,8 +25,6 @@ const Slider = ({ text, color }: SliderProps) => {
       spaceBetween={5}
       slidesPerView={1}
       loop={true}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {text.map((e, i) => (
         <SwiperSlide

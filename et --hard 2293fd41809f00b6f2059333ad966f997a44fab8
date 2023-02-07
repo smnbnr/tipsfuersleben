@@ -1,0 +1,65 @@
+[33mcommit 2293fd41809f00b6f2059333ad966f997a44fab8[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/feature-random[m[33m, [m[1;32mfeature-random[m[33m)[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Tue Jan 31 14:10:34 2023 +0100
+
+    add add page
+
+[33mcommit e1f8a83609f5280cb4970aadf7eff2ca9e70d8d8[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 19:38:29 2023 +0100
+
+    change swipe behaviour
+
+[33mcommit d9db02bc05388238b86ed1c6cb9ad2e57efd5ce9[m[33m ([m[1;31morigin/setupswiper[m[33m, [m[1;32msetupswiper[m[33m)[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 16:56:12 2023 +0100
+
+    change icon
+
+[33mcommit 31ce338ff13fc649be39e0c677212896b5a704fe[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 16:53:20 2023 +0100
+
+    change icon
+
+[33mcommit 2d9dc5250aba96513dcfc7adc2b48c214e2f90db[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 16:32:59 2023 +0100
+
+    add icon and styling
+
+[33mcommit c4c4e59105c30a20b0e691d24f96022b1cb1b5f2[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 15:05:37 2023 +0100
+
+    add randombutton
+
+[33mcommit c707f5e93d227599cfbac076262f7e4f43e7d065[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 02:29:55 2023 +0100
+
+    styling verbessert
+
+[33mcommit 5f5a893c9e4cfba32f2dba50f850a6ad6590e49f[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 01:32:35 2023 +0100
+
+    sliders are working
+
+[33mcommit a10244c881ff05c9e465b7420d4b531b4c4987fc[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 01:08:31 2023 +0100
+
+    basic setup of swiper
+
+[33mcommit 4fffbf8d8032530a05f7491d6b3a746f2635912f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/dev[m[33m, [m[1;32mmain[m[33m, [m[1;32mdev[m[33m)[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 00:37:38 2023 +0100
+
+    first commit
+
+[33mcommit 52f16fe9c2194f9412251b2ab972146bb1d60c10[m
+Author: Simon Börner <boernersimon@googlemail.com>
+Date:   Mon Jan 30 00:14:50 2023 +0100
+
+    Initial commit from Create Next App
