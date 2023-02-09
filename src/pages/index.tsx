@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import Slider from "components/Slider";
 import { useSwiper } from "swiper/react";
 import Header from "components/Header";
-import RandomButton from "components/AddButton";
-import AddButton from "components/AddButton";
+import Button from "components/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -151,7 +150,9 @@ export default function Home() {
     "auf die Tränendrüse drücken",
     "die Familie aus dem Spiel lassen",
   ]);
-
+  const userInput1 = [];
+  const userInput2 = [];
+  const userInput3 = [];
   return (
     <>
       <Head>
@@ -170,7 +171,7 @@ export default function Home() {
             <Slider color="bg-blue-200" text={text2} />
             <Slider color="bg-red-200" text={text3} />
           </div>
-          <AddButton></AddButton>
+          <Button text="WAS HINZUFÜGEN" href="/add" />
         </div>
       </main>
     </>
