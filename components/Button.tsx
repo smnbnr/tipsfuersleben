@@ -2,13 +2,17 @@ import Link from "next/link";
 
 interface ButtonProps {
   text: string;
-  href: string;
+  href?: string;
+  onClick?: () => void;
 }
 
-const Button = ({ text, href }: ButtonProps) => {
+const Button = ({ text, href, onClick }: ButtonProps) => {
   return (
-    <button className="border border-black border-dotted w-11/12 h-16 flex justify-center items-center gap-2 mt-9 bg-cyan-200">
-      <Link href={href}>{text}</Link>
+    <button
+      onClick={onClick}
+      className="border border-black border-dotted w-11/12 h-16 flex justify-center items-center gap-2 mt-9 bg-cyan-200"
+    >
+      {href ? <Link href={href}>{text}</Link> : text}
     </button>
   );
 };

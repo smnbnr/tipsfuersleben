@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import Slider from "components/Slider";
-import { useSwiper } from "swiper/react";
+import { SwiperRef } from "swiper/react";
 import Header from "components/Header";
 import Button from "components/Button";
 
@@ -150,13 +150,24 @@ export default function Home() {
     "auf die Tränendrüse drücken",
     "die Familie aus dem Spiel lassen",
   ]);
-  const userInput1 = [];
-  const userInput2 = [];
-  const userInput3 = [];
+
+  const sliderTopRef = useRef<SwiperRef>(null);
+  const sliderMiddleRef = useRef<SwiperRef>(null);
+  const sliderBottomRef = useRef<SwiperRef>(null);
+
+  const randomNumber = (adviceArray: any[]): number =>
+    Math.floor(Math.random() * adviceArray.length);
+
+  const handleClick = () => {
+    sliderTopRef?.current?.swiper?.slideTo(randomNumber(text1));
+    sliderMiddleRef?.current?.swiper?.slideTo(randomNumber(text2));
+    sliderBottomRef?.current?.swiper?.slideTo(randomNumber(text3));
+  };
+
   return (
     <>
       <Head>
-        <title>Tips fürs Leben</title>
+        <title>Tipps Umsonst</title>
         <meta name="description" content="Tips fürs Leben" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -167,11 +178,12 @@ export default function Home() {
           <Header />
           {/* Flex Container für die Slides */}
           <div className="w-11/12 flex flex-wrap gap-4 items-stretch">
-            <Slider color="bg-green-200" text={text1} />
-            <Slider color="bg-blue-200" text={text2} />
-            <Slider color="bg-red-200" text={text3} />
+            <Slider ref={sliderTopRef} color="bg-green-200" text={text1} />
+            <Slider ref={sliderMiddleRef} color="bg-blue-200" text={text2} />
+            <Slider ref={sliderBottomRef} color="bg-red-200" text={text3} />
           </div>
           <Button text="WAS HINZUFÜGEN" href="/add" />
+          <Button text="ZUFALLSRATSCHLAG" onClick={handleClick} />
         </div>
       </main>
     </>
