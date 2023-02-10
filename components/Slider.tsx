@@ -2,15 +2,26 @@ import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { EffectCreative } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-creative";
-import { forwardRef, ForwardedRef } from "react";
+import { forwardRef, ForwardedRef, SetStateAction, Dispatch } from "react";
+import { TbTrashX } from "react-icons/tb";
 
 interface SliderProps {
   color: string;
-  text: String[];
+  text: string[];
+  onSetTextArray: Dispatch<SetStateAction<string[]>>;
 }
 
 const Slider = forwardRef(
-  ({ text, color }: SliderProps, ref: ForwardedRef<SwiperRef>) => {
+  (
+    { text, color, onSetTextArray }: SliderProps,
+    ref: ForwardedRef<SwiperRef>
+  ) => {
+    const handleDelete = (textToDelete: string) => {
+      const filteredArray = text.filter((txt) => txt !== textToDelete);
+
+      onSetTextArray(filteredArray);
+    };
+
     return (
       <Swiper
         modules={[EffectCreative]}
@@ -29,16 +40,24 @@ const Slider = forwardRef(
         slidesPerView={1}
         loop={true}
       >
-        {text.map((e, i) => (
+        {text.map((txt, i) => (
           <SwiperSlide
-            className={`${color} w-full mb-7 flex items-center justify-center text-center text-xl font-semibold rounded-sm`}
+            className={`${color} w-full mb-7 flex items-center justify-center text-xl font-semibold rounded-sm`}
             key={i}
           >
-            {e}
+            <div className="flex mx-2 w-full justify-between">
+              {txt}
+              <button onClick={() => handleDelete(txt)}>
+                <TbTrashX />
+              </button>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
     );
   }
 );
+
+Slider.displayName = "Slider";
+
 export default Slider;

@@ -23,7 +23,7 @@ const Form = ({
   const [userBottomAdvice, setUserBottomAdvice] = useState("");
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-11/12">
       <div className="relative focus-within:z-10 focus-within:border-green-200 focus-within:ring-1 focus-within:ring-green-200">
         <label
           htmlFor="input1"

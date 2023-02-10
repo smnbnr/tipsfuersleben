@@ -13,6 +13,14 @@ import {
 import Form from "components/Form";
 
 export default function Home() {
+  // type textEntry = { text: string; type: "initial" | "user" };
+  // const [topAdvices, setTopAdvices] = useState<textEntry[]>(
+  //   initialTopAdvices.map((advice) => ({
+  //     text: advice,
+  //     type: "initial",
+  //   }))
+  // );
+
   const [topAdvices, setTopAdvices] = useState(initialTopAdvices);
   const [middleAdvices, setMiddleAdvices] = useState(initialMiddleAdvices);
   const [bottomAdvices, setBottomAdvices] = useState(initialBottomAdvices);
@@ -55,27 +63,31 @@ export default function Home() {
                 onSetMiddleAdvices={setMiddleAdvices}
                 onSetBottomAdvices={setBottomAdvices}
               />
-              <Button text="Zurück" onClick={() => setAddMode(false)} />
+              <Button text="ZURÜCK" onClick={() => setAddMode(false)} />
             </>
           ) : (
             <>
-              <div className="w-11/12 flex flex-wrap gap-4 items-stretch">
+              <div className="w-11/12 flex flex-wrap gap-4 pb-4 mt-3 items-stretch">
                 <Slider
                   ref={sliderTopRef}
                   color="bg-green-200"
+                  onSetTextArray={setTopAdvices}
                   text={topAdvices}
                 />
                 <Slider
                   ref={sliderMiddleRef}
                   color="bg-blue-200"
+                  onSetTextArray={setMiddleAdvices}
                   text={middleAdvices}
                 />
                 <Slider
                   ref={sliderBottomRef}
                   color="bg-red-200"
+                  onSetTextArray={setBottomAdvices}
                   text={bottomAdvices}
                 />
               </div>
+
               <Button text="ZUFALLSRATSCHLAG" onClick={handleClick} />
               <Button text="WAS HINZUFÜGEN" onClick={() => setAddMode(true)} />
             </>
