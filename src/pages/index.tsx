@@ -50,7 +50,7 @@ export default function Home() {
       </Head>
       <main>
         {/* Wrapper */}
-        <div className="flex flex-col justify-center items-center min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
+        <div className="flex flex-col justify-around items-center  min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
           <Header />
           {/* Flex Container für die Slides */}
           {addMode ? (
@@ -63,11 +63,14 @@ export default function Home() {
                 onSetMiddleAdvices={setMiddleAdvices}
                 onSetBottomAdvices={setBottomAdvices}
               />
-              <Button text="ZURÜCK" onClick={() => setAddMode(false)} />
+
+              <div className="mb-4 w-full flex justify-center">
+                <Button text="ZURÜCK" onClick={() => setAddMode(false)} />
+              </div>
             </>
           ) : (
             <>
-              <div className="w-11/12 flex flex-wrap gap-4 pb-4 mt-3 items-stretch">
+              <div className="w-11/12 flex flex-wrap gap-4 pb-4 items-stretch">
                 <Slider
                   ref={sliderTopRef}
                   color="bg-green-200"
@@ -87,9 +90,13 @@ export default function Home() {
                   text={bottomAdvices}
                 />
               </div>
-
-              <Button text="ZUFALLSRATSCHLAG" onClick={handleClick} />
-              <Button text="WAS HINZUFÜGEN" onClick={() => setAddMode(true)} />
+              <div className="w-full flex flex-col items-center justify-center mb-3">
+                <Button text="ZUFALLSRATSCHLAG" onClick={handleClick} />
+                <Button
+                  text="WAS HINZUFÜGEN"
+                  onClick={() => setAddMode(true)}
+                />
+              </div>
             </>
           )}
         </div>
