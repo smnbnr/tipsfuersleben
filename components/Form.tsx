@@ -24,10 +24,16 @@ const Form = ({
   const [addConfirmTop, setAddConfirmTop] = useState(false);
   const [addConfirmMiddle, setAddConfirmMiddle] = useState(false);
   const [addConfirmBottom, setAddConfirmBottom] = useState(false);
+  const [showTopWarning, setShowTopWarning] = useState(false);
+  const [showMiddleWarning, setShowMiddleWarning] = useState(false);
+  const [showBottomWarning, setShowBottomWarning] = useState(false);
   const resetSubmit = () => {
     setAddConfirmTop(false);
     setAddConfirmMiddle(false);
     setAddConfirmBottom(false);
+    setShowTopWarning(false);
+    setShowMiddleWarning(false);
+    setShowBottomWarning(false);
   };
   return (
     <div className="flex flex-col w-11/12">
@@ -52,12 +58,18 @@ const Form = ({
           placeholder="DU SOLLTEST WIRKLICH..."
         />
         <Submit
+          color="bg-green-200"
           addConfirm={addConfirmTop}
           onClick={() => {
-            onSetTopAdvices([...topAdvices, userTopAdvice]);
-            setUserTopAdvice("");
-            setAddConfirmTop(true);
+            if (userTopAdvice.length !== 0) {
+              onSetTopAdvices([...topAdvices, userTopAdvice]);
+              setUserTopAdvice("");
+              setAddConfirmTop(true);
+            } else {
+              setShowTopWarning(true);
+            }
           }}
+          showWarning={showTopWarning}
         />
       </div>
       <div className="relative">
@@ -78,14 +90,22 @@ const Form = ({
           id="input2"
           className="block w-full border-0 p-1 py-2 text-gray-900 placeholder-gray-400 focus:ring-0 sm:text-sm"
           placeholder="...HIER"
+          required
+          minLength={2}
         />
         <Submit
+          color="bg-blue-200"
           addConfirm={addConfirmMiddle}
           onClick={() => {
-            onSetMiddleAdvices([...middleAdvices, userMiddleAdvice]);
-            setUserMiddleAdvice("");
-            setAddConfirmMiddle(true);
+            if (userMiddleAdvice.length !== 0) {
+              onSetMiddleAdvices([...middleAdvices, userMiddleAdvice]);
+              setUserMiddleAdvice("");
+              setAddConfirmMiddle(true);
+            } else {
+              setShowMiddleWarning(true);
+            }
           }}
+          showWarning={showMiddleWarning}
         />
       </div>
       <div className="relative">
@@ -106,14 +126,22 @@ const Form = ({
           id="input3"
           className="block w-full border-0 p-1 py-2 text-gray-900 placeholder-gray-400 focus:ring-0 sm:text-sm"
           placeholder="...WAS REINSCHREIBEN!"
+          required
+          minLength={2}
         />
         <Submit
+          color="bg-red-200"
           addConfirm={addConfirmBottom}
           onClick={() => {
-            onSetBottomAdvices([...bottomAdvices, userBottomAdvice]);
-            setUserBottomAdvice("");
-            setAddConfirmBottom(true);
+            if (userBottomAdvice.length !== 0) {
+              onSetBottomAdvices([...bottomAdvices, userBottomAdvice]);
+              setUserBottomAdvice("");
+              setAddConfirmBottom(true);
+            } else {
+              setShowBottomWarning(true);
+            }
           }}
+          showWarning={showBottomWarning}
         />
       </div>
     </div>
