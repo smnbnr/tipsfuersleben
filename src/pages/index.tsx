@@ -52,7 +52,6 @@ export default function Home() {
     sliderMiddleRef?.current?.swiper?.slideTo(randomNumber(middleAdvices));
     sliderBottomRef?.current?.swiper?.slideTo(randomNumber(bottomAdvices));
   };
-  const handleFilter = () => {};
 
   const filterUser = ({ type }: { type: "user" | "initial" }) =>
     type === "user";

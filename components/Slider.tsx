@@ -8,7 +8,7 @@ import { TbTrashX } from "react-icons/tb";
 type textEntry = { text: string; type: "initial" | "user" };
 interface SliderProps {
   color: string;
-  text: textEntry[] | string;
+  text: textEntry[];
 
   onSetTextArray: Dispatch<SetStateAction<textEntry[]>>;
 }
@@ -42,19 +42,27 @@ const Slider = forwardRef(
         slidesPerView={1}
         loop={true}
       >
-        {text.map((txt, i) => (
+        {text.length === 0 ? (
           <SwiperSlide
             className={`${color} w-full mb-7 flex items-center justify-center text-xl font-semibold rounded-sm`}
-            key={i}
           >
-            <div className="flex mx-2 w-full justify-between">
-              {txt.text}
-              <button onClick={() => handleDelete(txt.text)}>
-                <TbTrashX />
-              </button>
-            </div>
+            Füge zuerst einen Ratschlag hinzu...
           </SwiperSlide>
-        ))}
+        ) : (
+          text.map((txt, i) => (
+            <SwiperSlide
+              className={`${color} w-full mb-7 flex items-center justify-center text-xl font-semibold rounded-sm`}
+              key={i}
+            >
+              <div className="flex mx-2 w-full justify-between">
+                {txt.text}
+                <button onClick={() => handleDelete(txt.text)}>
+                  <TbTrashX />
+                </button>
+              </div>
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
     );
   }
