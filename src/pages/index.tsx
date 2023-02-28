@@ -13,17 +13,30 @@ import {
 import Form from "components/Form";
 
 export default function Home() {
-  // type textEntry = { text: string; type: "initial" | "user" };
-  // const [topAdvices, setTopAdvices] = useState<textEntry[]>(
-  //   initialTopAdvices.map((advice) => ({
-  //     text: advice,
-  //     type: "initial",
-  //   }))
-  // );
+  const [showUserFilter, setShowUserFilter] = useState(false);
+  type textEntry = { text: string; type: "initial" | "user" };
+  const [topAdvices, setTopAdvices] = useState<textEntry[]>(
+    initialTopAdvices.map((advice) => ({
+      text: advice,
+      type: "initial",
+    }))
+  );
+  const [middleAdvices, setMiddleAdvices] = useState<textEntry[]>(
+    initialMiddleAdvices.map((advice) => ({
+      text: advice,
+      type: "initial",
+    }))
+  );
+  const [bottomAdvices, setBottomAdvices] = useState<textEntry[]>(
+    initialBottomAdvices.map((advice) => ({
+      text: advice,
+      type: "initial",
+    }))
+  );
 
-  const [topAdvices, setTopAdvices] = useState(initialTopAdvices);
-  const [middleAdvices, setMiddleAdvices] = useState(initialMiddleAdvices);
-  const [bottomAdvices, setBottomAdvices] = useState(initialBottomAdvices);
+  // const [topAdvices, setTopAdvices] = useState(initialTopAdvices);
+  // const [middleAdvices, setMiddleAdvices] = useState(initialMiddleAdvices);
+  // const [bottomAdvices, setBottomAdvices] = useState(initialBottomAdvices);
 
   const [addMode, setAddMode] = useState(false);
 
@@ -39,6 +52,10 @@ export default function Home() {
     sliderMiddleRef?.current?.swiper?.slideTo(randomNumber(middleAdvices));
     sliderBottomRef?.current?.swiper?.slideTo(randomNumber(bottomAdvices));
   };
+  const handleFilter = () => {};
+
+  const filterUser = ({ type }: { type: "user" | "initial" }) =>
+    type === "user";
 
   return (
     <>
@@ -75,26 +92,42 @@ export default function Home() {
                   ref={sliderTopRef}
                   color="bg-green-200"
                   onSetTextArray={setTopAdvices}
-                  text={topAdvices}
+                  text={
+                    showUserFilter ? topAdvices.filter(filterUser) : topAdvices
+                  }
                 />
                 <Slider
                   ref={sliderMiddleRef}
                   color="bg-blue-200"
                   onSetTextArray={setMiddleAdvices}
-                  text={middleAdvices}
+                  text={
+                    showUserFilter
+                      ? middleAdvices.filter(filterUser)
+                      : middleAdvices
+                  }
                 />
                 <Slider
                   ref={sliderBottomRef}
                   color="bg-red-200"
                   onSetTextArray={setBottomAdvices}
-                  text={bottomAdvices}
+                  text={
+                    showUserFilter
+                      ? bottomAdvices.filter(filterUser)
+                      : bottomAdvices
+                  }
                 />
               </div>
               <div className="w-full flex flex-col items-center justify-center mb-3">
                 <Button text="ZUFALLSRATSCHLAG" onClick={handleClick} />
                 <Button
-                  text="WAS HINZUFÜGEN"
+                  text="RATSCHLAG HINZUFÜGEN"
                   onClick={() => setAddMode(true)}
+                />
+                <Button
+                  text={
+                    showUserFilter ? "ALLE ANZEIGEN" : "NUR EIGENE ANZEIGEN"
+                  }
+                  onClick={() => setShowUserFilter(!showUserFilter)}
                 />
               </div>
             </>

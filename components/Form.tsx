@@ -1,13 +1,14 @@
 import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import Submit from "./Submit";
 
+type textEntry = { text: string; type: "initial" | "user" };
 interface setAdvicesProps {
-  onSetTopAdvices: Dispatch<SetStateAction<string[]>>;
-  onSetMiddleAdvices: Dispatch<SetStateAction<string[]>>;
-  onSetBottomAdvices: Dispatch<SetStateAction<string[]>>;
-  topAdvices: string[];
-  middleAdvices: string[];
-  bottomAdvices: string[];
+  onSetTopAdvices: Dispatch<SetStateAction<textEntry[]>>;
+  onSetMiddleAdvices: Dispatch<SetStateAction<textEntry[]>>;
+  onSetBottomAdvices: Dispatch<SetStateAction<textEntry[]>>;
+  topAdvices: textEntry[];
+  middleAdvices: textEntry[];
+  bottomAdvices: textEntry[];
 }
 
 const Form = ({
@@ -35,6 +36,7 @@ const Form = ({
     setShowMiddleWarning(false);
     setShowBottomWarning(false);
   };
+  console.log(userTopAdvice);
   return (
     <div className="flex flex-col w-11/12">
       <div className="relative">
@@ -62,7 +64,10 @@ const Form = ({
           addConfirm={addConfirmTop}
           onClick={() => {
             if (userTopAdvice.length !== 0) {
-              onSetTopAdvices([...topAdvices, userTopAdvice]);
+              onSetTopAdvices([
+                ...topAdvices,
+                { text: userTopAdvice, type: "user" },
+              ]);
               setUserTopAdvice("");
               setAddConfirmTop(true);
             } else {
@@ -98,7 +103,10 @@ const Form = ({
           addConfirm={addConfirmMiddle}
           onClick={() => {
             if (userMiddleAdvice.length !== 0) {
-              onSetMiddleAdvices([...middleAdvices, userMiddleAdvice]);
+              onSetMiddleAdvices([
+                ...middleAdvices,
+                { text: userMiddleAdvice, type: "user" },
+              ]);
               setUserMiddleAdvice("");
               setAddConfirmMiddle(true);
             } else {
@@ -134,7 +142,10 @@ const Form = ({
           addConfirm={addConfirmBottom}
           onClick={() => {
             if (userBottomAdvice.length !== 0) {
-              onSetBottomAdvices([...bottomAdvices, userBottomAdvice]);
+              onSetBottomAdvices([
+                ...bottomAdvices,
+                { text: userBottomAdvice, type: "user" },
+              ]);
               setUserBottomAdvice("");
               setAddConfirmBottom(true);
             } else {

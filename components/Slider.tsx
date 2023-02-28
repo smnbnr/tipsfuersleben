@@ -5,10 +5,12 @@ import "swiper/css/effect-creative";
 import { forwardRef, ForwardedRef, SetStateAction, Dispatch } from "react";
 import { TbTrashX } from "react-icons/tb";
 
+type textEntry = { text: string; type: "initial" | "user" };
 interface SliderProps {
   color: string;
-  text: string[];
-  onSetTextArray: Dispatch<SetStateAction<string[]>>;
+  text: textEntry[] | string;
+
+  onSetTextArray: Dispatch<SetStateAction<textEntry[]>>;
 }
 
 const Slider = forwardRef(
@@ -17,8 +19,8 @@ const Slider = forwardRef(
     ref: ForwardedRef<SwiperRef>
   ) => {
     const handleDelete = (textToDelete: string) => {
-      const filteredArray = text.filter((txt) => txt !== textToDelete);
-
+      const filteredArray = text.filter((txt) => txt.text !== textToDelete);
+      console.log(filteredArray);
       onSetTextArray(filteredArray);
     };
 
@@ -46,8 +48,8 @@ const Slider = forwardRef(
             key={i}
           >
             <div className="flex mx-2 w-full justify-between">
-              {txt}
-              <button onClick={() => handleDelete(txt)}>
+              {txt.text}
+              <button onClick={() => handleDelete(txt.text)}>
                 <TbTrashX />
               </button>
             </div>
