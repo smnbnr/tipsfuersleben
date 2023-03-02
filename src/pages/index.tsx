@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Slider from "components/Slider";
 import { SwiperRef } from "swiper/react";
 import Header from "components/Header";
@@ -13,14 +13,16 @@ import {
 import Form from "components/Form";
 
 export default function Home() {
-  const [showUserFilter, setShowUserFilter] = useState(false);
+  const [showUserAdvices, setShowUserAdvices] = useState(false);
   type textEntry = { text: string; type: "initial" | "user" };
+
   const [topAdvices, setTopAdvices] = useState<textEntry[]>(
     initialTopAdvices.map((advice) => ({
       text: advice,
       type: "initial",
     }))
   );
+
   const [middleAdvices, setMiddleAdvices] = useState<textEntry[]>(
     initialMiddleAdvices.map((advice) => ({
       text: advice,
@@ -33,10 +35,6 @@ export default function Home() {
       type: "initial",
     }))
   );
-
-  // const [topAdvices, setTopAdvices] = useState(initialTopAdvices);
-  // const [middleAdvices, setMiddleAdvices] = useState(initialMiddleAdvices);
-  // const [bottomAdvices, setBottomAdvices] = useState(initialBottomAdvices);
 
   const [addMode, setAddMode] = useState(false);
 
@@ -53,8 +51,38 @@ export default function Home() {
     sliderBottomRef?.current?.swiper?.slideTo(randomNumber(bottomAdvices));
   };
 
-  const filterUser = ({ type }: { type: "user" | "initial" }) =>
+  const filterUserAdvice = ({ type }: { type: "user" | "initial" }) =>
     type === "user";
+
+  //----------------LOCALSTORAGE TO BE CONTINUED-----------//
+  // useEffect(() => {
+  //   if (!window.localStorage.getItem("topAdvices")) {
+  //     window.localStorage.setItem("topAdvices", JSON.stringify(topAdvices));
+  //     window.localStorage.setItem(
+  //       "middleAdvices",
+  //       JSON.stringify(middleAdvices)
+  //     );
+  //     window.localStorage.setItem(
+  //       "bottomAdvices",
+  //       JSON.stringify(bottomAdvices)
+  //     );
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const storedTopAdvices = window.localStorage.getItem("topAdvices");
+  //   if (storedTopAdvices) {
+  //     setTopAdvices(JSON.parse(storedTopAdvices));
+  //   }
+  //   const storedMiddleAdvices = window.localStorage.getItem("middleAdvices");
+  //   if (storedMiddleAdvices) {
+  //     setMiddleAdvices(JSON.parse(storedMiddleAdvices));
+  //   }
+  //   const storedBottomAdvices = window.localStorage.getItem("bottomAdvices");
+  //   if (storedBottomAdvices) {
+  //     setBottomAdvices(JSON.parse(storedBottomAdvices));
+  //   }
+  // }, []);
 
   return (
     <>
@@ -66,7 +94,7 @@ export default function Home() {
       </Head>
       <main>
         {/* Wrapper */}
-        <div className="flex flex-col justify-around items-center  min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
+        <div className="flex flex-col justify-around items-center min-h-screen w-full bg-gradient-to-r from-sky-400 to-cyan-300">
           <Header />
           {/* Flex Container für die Slides */}
           {addMode ? (
@@ -80,28 +108,32 @@ export default function Home() {
                 onSetBottomAdvices={setBottomAdvices}
               />
 
-              <div className="mb-4 w-full flex justify-center">
+              <div className="mb-4 w-11/12 md:w-2/4 flex justify-center font-bold">
                 <Button text="ZURÜCK" onClick={() => setAddMode(false)} />
               </div>
             </>
           ) : (
             <>
-              <div className="w-11/12 flex flex-wrap gap-4 pb-4 items-stretch">
+              <div className="w-11/12 md:w-2/4 flex flex-wrap gap-4 pb-4 items-stretch">
                 <Slider
                   ref={sliderTopRef}
                   color="bg-green-200"
                   onSetTextArray={setTopAdvices}
+                  position="top"
                   text={
-                    showUserFilter ? topAdvices.filter(filterUser) : topAdvices
+                    showUserAdvices
+                      ? topAdvices.filter(filterUserAdvice)
+                      : topAdvices
                   }
                 />
                 <Slider
                   ref={sliderMiddleRef}
                   color="bg-blue-200"
                   onSetTextArray={setMiddleAdvices}
+                  position="middle"
                   text={
-                    showUserFilter
-                      ? middleAdvices.filter(filterUser)
+                    showUserAdvices
+                      ? middleAdvices.filter(filterUserAdvice)
                       : middleAdvices
                   }
                 />
@@ -109,14 +141,15 @@ export default function Home() {
                   ref={sliderBottomRef}
                   color="bg-red-200"
                   onSetTextArray={setBottomAdvices}
+                  position="bottom"
                   text={
-                    showUserFilter
-                      ? bottomAdvices.filter(filterUser)
+                    showUserAdvices
+                      ? bottomAdvices.filter(filterUserAdvice)
                       : bottomAdvices
                   }
                 />
               </div>
-              <div className="w-full flex flex-col items-center justify-center mb-3">
+              <div className="w-11/12 md:w-2/4 flex flex-col items-center justify-center mb-3">
                 <Button text="ZUFALLSRATSCHLAG" onClick={handleClick} />
                 <Button
                   text="RATSCHLAG HINZUFÜGEN"
@@ -124,9 +157,9 @@ export default function Home() {
                 />
                 <Button
                   text={
-                    showUserFilter ? "ALLE ANZEIGEN" : "NUR EIGENE ANZEIGEN"
+                    showUserAdvices ? "ALLE ANZEIGEN" : "NUR EIGENE ANZEIGEN"
                   }
-                  onClick={() => setShowUserFilter(!showUserFilter)}
+                  onClick={() => setShowUserAdvices(!showUserAdvices)}
                 />
               </div>
             </>

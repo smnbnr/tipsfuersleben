@@ -9,19 +9,22 @@ type textEntry = { text: string; type: "initial" | "user" };
 interface SliderProps {
   color: string;
   text: textEntry[];
-
+  position: string;
   onSetTextArray: Dispatch<SetStateAction<textEntry[]>>;
 }
 
 const Slider = forwardRef(
   (
-    { text, color, onSetTextArray }: SliderProps,
+    { text, color, onSetTextArray, position }: SliderProps,
     ref: ForwardedRef<SwiperRef>
   ) => {
     const handleDelete = (textToDelete: string) => {
       const filteredArray = text.filter((txt) => txt.text !== textToDelete);
-      console.log(filteredArray);
       onSetTextArray(filteredArray);
+      window.localStorage.setItem(
+        `${position}Advices`,
+        JSON.stringify(filteredArray)
+      );
     };
 
     return (
@@ -44,7 +47,7 @@ const Slider = forwardRef(
       >
         {text.length === 0 ? (
           <SwiperSlide
-            className={`${color} w-full mb-7 flex items-center justify-center text-xl font-semibold rounded-sm`}
+            className={`${color} w-full mb-7 pl-2 flex items-center text-xl font-semibold rounded-sm`}
           >
             Füge zuerst einen Ratschlag hinzu...
           </SwiperSlide>

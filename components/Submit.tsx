@@ -20,7 +20,9 @@ const Submit = ({ onClick, addConfirm, showWarning, color }: SubmitProps) => {
       >
         {addConfirm ? "HINZUGEFÜGT!" : "HINZUFÜGEN"}
       </button>
-      {showWarning && <p className="text-red-900">BITTE TEXT EINGEBEN</p>}
+      {showWarning && (
+        <p className="text-red-900 font-bold">BITTE TEXT EINGEBEN</p>
+      )}
     </div>
   );
 };
