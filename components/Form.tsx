@@ -36,9 +36,9 @@ const Form = ({
     setShowMiddleWarning(false);
     setShowBottomWarning(false);
   };
-  console.log(userTopAdvice);
+
   return (
-    <div className="flex flex-col w-11/12">
+    <div className="flex flex-col w-11/12 md:w-2/4">
       <div className="relative">
         <label
           htmlFor="input1"
